@@ -1,4 +1,5 @@
 const path = require("path");
+const postcssPlugins = [];
 
 module.exports = {
   entry: "./app/assets/scripts/App.js",
@@ -12,7 +13,14 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            option: { postcssOptions: { plugins: postcssPlugins } },
+          },
+        ],
       },
     ],
   },
